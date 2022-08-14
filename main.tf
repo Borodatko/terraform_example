@@ -14,9 +14,14 @@ resource "yandex_compute_instance" "test" {
   boot_disk {
     initialize_params {
       image_id = "${yandex_compute_image.deb.id}"
-      size = "30"
-      type_id = "network-nvme"
+      size = "10"
+      type = "network-nvme"
     }
+  }
+
+  network_interface {
+    subnet_id = "${yandex_vpc_subnet.internal.id}"
+    nat = true
   }
 }
 
