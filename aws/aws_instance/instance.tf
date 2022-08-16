@@ -16,7 +16,7 @@ data "aws_ami" "ubuntu" {
 
 resource "aws_key_pair" "ssh" {
   key_name = "MyKey"
-  public_key = "file("~/.ssh/id_rsa.pub")"
+  public_key = "${file("~/.ssh/id_rsa.pub")}"
 }
 
 resource "aws_instance" "web" {
